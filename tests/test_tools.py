@@ -133,3 +133,14 @@ def test_run_refuses_platform_engines_and_outside_paths(project):
         tools.run_contract("orders.yaml", "d.csv", engine="spark")
     with pytest.raises(tools.ToolError, match="outside the project folder"):
         tools.generate_test_data("orders.yaml", output="../escape.csv")
+
+
+def test_run_reads_the_file_by_its_type_even_when_the_contract_says_delta(project):
+    """Found by a real Claude Code session: a contract with `format: delta` made run_contract open
+    the CSV as a Delta table ("Invalid table location")."""
+    (project / "orders.yaml").write_text(ORDERS + "materialization: { strategy: merge, format: delta }\n", encoding="utf-8")
+    made = tools.generate_test_data("orders.yaml", rows=20, invalid_ratio=0.2, seed=3)
+    for engine in ("polars", "duckdb"):
+        run = tools.run_contract("orders.yaml", made["data_file"], engine=engine)
+        assert run["ran"] is True, run
+        assert run["good_rows"] + run["quarantined_rows"] == 20

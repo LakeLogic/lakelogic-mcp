@@ -245,7 +245,10 @@ def run_contract(
     if engine not in RUN_ENGINES:
         raise ToolError(f"engine must be one of {', '.join(RUN_ENGINES)} locally. Spark, Snowflake and BigQuery run on the platform.")
     try:
-        result = DataProcessor(engine=engine, contract=str(full)).run_source(str(data))
+        # Read the file by ITS type and hand the rows to the contract: `run_source` would read it
+        # with the contract's own source/target format (e.g. Delta), which a local file is not.
+        frame = _read_local(data, engine)
+        result = DataProcessor(engine=engine, contract=str(full)).run(frame)
     except Exception as exc:  # noqa: BLE001 - a failed run is the answer, not a server error
         return {"contract": str(full.relative_to(ROOT)), "ran": False, "error": f"{type(exc).__name__}: {exc}"}
     good, bad = _to_polars(result.good), _to_polars(result.bad)
@@ -272,6 +275,17 @@ def run_contract(
                 df.write_parquet(target)
                 out[f"{name}_file"] = str(target.relative_to(ROOT))
     return out
+
+
+def _read_local(data: Path, engine: str) -> Any:
+    suffix = data.suffix.lower()
+    if suffix not in (".csv", ".parquet"):
+        raise ToolError("source must be a .csv or .parquet file.")
+    import polars as pl
+
+    frame = pl.read_csv(data, infer_schema_length=10_000) if suffix == ".csv" else pl.read_parquet(data)
+    # DuckDB gets Arrow: a relation built on another connection cannot be read by the engine's own.
+    return frame.to_arrow() if engine == "duckdb" else frame
 
 
 def _to_polars(df: Any) -> Any:
