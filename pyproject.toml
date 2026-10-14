@@ -1,0 +1,28 @@
+[project]
+name = "lakelogic-mcp"
+version = "0.1.0"
+description = "A local MCP server that lets AI assistants validate, lint and explain Open Lakehouse Contracts."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+dependencies = [
+    "mcp>=1.2",  # 1.x (FastMCP) and 2.x (MCPServer) both supported
+    "lakelogic>=1.78.0",  # the lint rule catalogue (explain_rule) ships in 1.78.0
+    "open-lakehouse-contract>=0.24.0",
+]
+
+[project.scripts]
+lakelogic-mcp = "lakelogic_mcp.server:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lakelogic_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
