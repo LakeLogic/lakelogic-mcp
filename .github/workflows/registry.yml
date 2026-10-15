@@ -1,0 +1,31 @@
+name: Publish to the MCP Registry
+
+# Lists this server in the official MCP Registry (registry.modelcontextprotocol.io) as
+# io.github.LakeLogic/lakelogic-mcp. Authenticates with GitHub Actions' OIDC token: a workflow in a
+# LakeLogic repository may publish under io.github.LakeLogic/*, with no personal login and no
+# organisation app approval. Run after the PyPI release of the version in server.json (the registry
+# checks the package's README on PyPI for the `mcp-name:` line).
+
+on:
+    workflow_dispatch:
+    workflow_run:
+        workflows: ["Publish to PyPI"]
+        types: [completed]
+
+permissions:
+    contents: read
+    id-token: write
+
+jobs:
+    registry:
+        if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Install mcp-publisher
+              run: |
+                  curl -sL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz" | tar xz mcp-publisher
+            - name: Log in with GitHub OIDC
+              run: ./mcp-publisher login github-oidc
+            - name: Publish
+              run: ./mcp-publisher publish
