@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "lakelogic": {
+      "command": "uvx",
+      "args": ["lakelogic-mcp==0.1.1"]
+    }
+  }
+}

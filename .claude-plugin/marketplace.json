@@ -1,0 +1,12 @@
+{
+  "name": "lakelogic-mcp",
+  "description": "LakeLogic tools for Open Lakehouse Contracts, for Claude Code",
+  "owner": { "name": "LakeLogic", "url": "https://github.com/LakeLogic" },
+  "plugins": [
+    {
+      "name": "lakelogic-mcp",
+      "source": "./plugins/lakelogic-mcp",
+      "description": "Validate, lint, explain, generate test data for and run Open Lakehouse Contracts locally"
+    }
+  ]
+}

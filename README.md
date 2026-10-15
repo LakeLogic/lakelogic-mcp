@@ -1,5 +1,8 @@
 # lakelogic-mcp
 
+<!-- Ownership check for the official MCP Registry (registry.modelcontextprotocol.io). -->
+mcp-name: io.github.LakeLogic/lakelogic-mcp
+
 A **local** MCP server that lets AI assistants (Claude Code, Claude Desktop, Cursor and any MCP client)
 check the Open Lakehouse Contracts (OLC) they write, using LakeLogic itself instead of guessing.
 
@@ -22,9 +25,22 @@ check the Open Lakehouse Contracts (OLC) they write, using LakeLogic itself inst
 
 ## Install
 
-```bash
-claude mcp add lakelogic -- uvx lakelogic-mcp
+**Claude Code** (plugin):
+
 ```
+/plugin marketplace add LakeLogic/lakelogic-mcp
+/plugin install lakelogic-mcp@lakelogic-mcp
+```
+
+or directly: `claude mcp add lakelogic -- uvx lakelogic-mcp`
+
+**Cursor:** [Add to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=lakelogic&config=eyJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyJsYWtlbG9naWMtbWNwIl19)
+
+**Any other MCP client** (VS Code, Claude Desktop, ...): run `uvx lakelogic-mcp` as a stdio server.
+It is also listed in the official [MCP Registry](https://registry.modelcontextprotocol.io) as
+`io.github.LakeLogic/lakelogic-mcp`.
+
+All of them need [`uv`](https://docs.astral.sh/uv/) on your PATH.
 
 ## Try it locally (development checkout)
 
