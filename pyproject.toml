@@ -1,15 +1,36 @@
 [project]
 name = "lakelogic-mcp"
-version = "0.1.1"
+version = "0.1.2"
 description = "A local MCP server that lets AI assistants validate, lint and explain Open Lakehouse Contracts."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
+authors = [{ name = "LakeLogic Team", email = "lakelogic@gmail.com" }]
+keywords = ["mcp", "model-context-protocol", "data-contracts", "olc", "open-lakehouse-contract", "lakehouse", "data-quality", "claude", "cursor", "ai-assistant"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Database",
+    "Topic :: Software Development :: Quality Assurance",
+]
 dependencies = [
     "mcp>=1.2",  # 1.x (FastMCP) and 2.x (MCPServer) both supported
     "lakelogic>=1.78.0",  # the lint rule catalogue (explain_rule) ships in 1.78.0
     "open-lakehouse-contract>=0.24.0",
 ]
+
+[project.urls]
+Homepage = "https://lakelogic.io"
+Documentation = "https://lakelogic.github.io/LakeLogic/"
+Repository = "https://github.com/LakeLogic/lakelogic-mcp"
+Issues = "https://github.com/LakeLogic/lakelogic-mcp/issues"
+"Open Lakehouse Contract" = "https://lakelogic.github.io/open-lakehouse-contract/"
 
 [project.scripts]
 lakelogic-mcp = "lakelogic_mcp.server:main"
