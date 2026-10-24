@@ -1376,3 +1376,14 @@ html {
     margin-top: 1.5rem;
   }
 }
+
+/* ── LakeLogic MCP: tool input tables (2026-10-24) ──────────────────────────────────────────
+   An input name or default (`write_outputs`, `test_data/<contract>.csv`) is one token: it must
+   not wrap or spill out of its cell. The table widens instead, and scrolls on a narrow screen. */
+.md-typeset table:not([class]) td:first-child code,
+.md-typeset table:not([class]) td:nth-child(2) code {
+  white-space: nowrap;
+}
+.md-typeset table:not([class]) td:first-child {
+  white-space: nowrap;
+}

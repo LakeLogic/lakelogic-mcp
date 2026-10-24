@@ -18,7 +18,7 @@ The server also tells the assistant how to use them together: after writing or c
 
 **Does it match the OLC model?** Known keys, the right shapes, required fields.
 
-| Input | |
+| Input | Meaning |
 |---|---|
 | `path` | A contract file in the project |
 | `contract_yaml` | Or the contract's text |
@@ -30,7 +30,7 @@ Returns `valid` and, if not, each error's location and problem.
 **Does it pass the lint checks?** Governance gaps such as a merge with no key, unordered deduplication,
 untagged personal data, or a step no engine runs. Use after `validate_contract` passes.
 
-| Input | |
+| Input | Meaning |
 |---|---|
 | `path` | A contract file in the project |
 | `contract_yaml` | Or the contract's text |
@@ -41,7 +41,7 @@ Returns `clean` and findings, each with its rule code, severity and fix.
 
 **Why does a lint rule exist?** What it checks, why it matters, a failing contract and the fixed one.
 
-| Input | |
+| Input | Meaning |
 |---|---|
 | `code` | A lint rule code, e.g. `KEY-002` |
 
@@ -49,7 +49,7 @@ Returns `clean` and findings, each with its rule code, severity and fix.
 
 **How is one part of a contract written?** Returns the OLC reference page for that part.
 
-| Input | |
+| Input | Meaning |
 |---|---|
 | `topic` | One of: `anatomy` (every key), `execution-order`, `ingestion`, `lifecycle`, `quality`, `security`, `compliance`, `transformation`, `external-logic`, `materialization`, `server`, `lineage`, `data-products`, `slo`, `notifications`, `extraction`, `conformance`, `cli`, `schema` |
 
@@ -57,7 +57,7 @@ Returns `clean` and findings, each with its rule code, severity and fix.
 
 **The contract as an [Open Data Contract Standard](https://bitol-io.github.io/open-data-contract-standard/) document.**
 
-| Input | |
+| Input | Meaning |
 |---|---|
 | `path` | A contract file in the project |
 
@@ -67,7 +67,7 @@ Returns `clean` and findings, each with its rule code, severity and fix.
 of rows that deliberately break its quality rules, so a run shows quarantine working.
 *Writes a file in the project.*
 
-| Input | Default | |
+| Input | Default | Meaning |
 |---|---|---|
 | `path` | | The contract file |
 | `rows` | `100` | How many rows |
@@ -81,7 +81,7 @@ of rows that deliberately break its quality rules, so a run shows quarantine wor
 how many rows pass, how many are quarantined, and each quarantine reason with its count.
 *Nothing is written to the contract's target. Core does what the contract configures, including any notifications — see [Safety and privacy](safety.md).*
 
-| Input | Default | |
+| Input | Default | Meaning |
 |---|---|---|
 | `path` | | The contract file |
 | `source` | | The data file (CSV or Parquet) in the project |
