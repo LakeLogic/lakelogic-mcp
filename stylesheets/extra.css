@@ -1387,3 +1387,11 @@ html {
 .md-typeset table:not([class]) td:first-child {
   white-space: nowrap;
 }
+
+/* ── Text 10% larger (2026-10-24) ───────────────────────────────────────────────────────────
+   The pages read best at 110% browser zoom, so the root size is raised 10% at each of
+   Material's breakpoints (125% / 137.5% / 150%). Every size here is in rem, so headings,
+   tables, code and the header all scale together, as zoom does. */
+html { font-size: 137.5%; }
+@media screen and (min-width: 100em) { html { font-size: 151.25%; } }
+@media screen and (min-width: 125em) { html { font-size: 165%; } }
