@@ -16,33 +16,29 @@ use_directory_urls: false
 dev_addr: 127.0.0.1:8012
 
 theme:
+  # Same look as the LakeLogic Core docs: its overrides, stylesheet and theme switcher.
   name: material
+  custom_dir: docs/overrides
   logo: assets/logo.svg
   favicon: assets/logo.svg
   font:
     text: "Inter"
     code: "JetBrains Mono"
   palette:
-    # Same as the OLC and LakeLogic docs: follow the visitor's system theme, with a toggle.
-    - media: "(prefers-color-scheme)"
-      toggle:
-        icon: material/brightness-auto
-        name: Switch to light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: cyan
-      accent: light blue
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: cyan
+    - scheme: default
+      primary: custom
       accent: light blue
       toggle:
         icon: material/brightness-4
-        name: Switch to system preference
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      accent: light blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to light mode
   features:
+    - navigation.instant
     - navigation.tracking
     - navigation.top
     - navigation.footer
@@ -73,3 +69,15 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+
+extra_css:
+  # Bump ?v= on every extra.css change: GitHub Pages serves it unhashed.
+  - stylesheets/extra.css?v=1
+
+extra_javascript:
+  - javascripts/theme-switcher.js
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/LakeLogic/lakelogic-mcp
