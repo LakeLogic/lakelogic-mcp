@@ -1,0 +1,75 @@
+site_name: LakeLogic MCP
+site_description: >
+  A local MCP server that lets AI assistants check, test and run the Open Lakehouse Contracts
+  they write, using LakeLogic itself instead of guessing.
+site_url: https://lakelogic.github.io/lakelogic-mcp/
+site_author: LakeLogic
+repo_name: LakeLogic/lakelogic-mcp
+repo_url: https://github.com/LakeLogic/lakelogic-mcp
+edit_uri: edit/main/docs/
+copyright: >
+  Copyright &copy; 2026 LakeLogic ·
+  <a href="https://lakelogic.github.io/LakeLogic/" target="_blank">LakeLogic Core</a> ·
+  <a href="https://lakelogic.github.io/open-lakehouse-contract/" target="_blank">Open Lakehouse Contract</a>
+
+use_directory_urls: false
+dev_addr: 127.0.0.1:8012
+
+theme:
+  name: material
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+  font:
+    text: "Inter"
+    code: "JetBrains Mono"
+  palette:
+    # Same as the OLC and LakeLogic docs: follow the visitor's system theme, with a toggle.
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: cyan
+      accent: light blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: cyan
+      accent: light blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  features:
+    - navigation.tracking
+    - navigation.top
+    - navigation.footer
+    - navigation.sections
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+nav:
+  - Overview: index.md
+  - Install: install.md
+  - Tools: tools.md
+  - Safety and privacy: safety.md
+  - Development: development.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
