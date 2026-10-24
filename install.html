@@ -19,7 +19,7 @@
         <link rel="prev" href="index.html">
       
       
-        <link rel="next" href="tools.html">
+        <link rel="next" href="walkthrough.html">
       
       
         
@@ -363,6 +363,61 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#claude-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Desktop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cursor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cursor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vs-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VS Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-mcp-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other MCP clients
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#options" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -384,10 +439,48 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="walkthrough.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -500,6 +593,61 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#claude-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claude Desktop
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cursor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cursor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vs-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VS Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-mcp-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Other MCP clients
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#options" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -515,6 +663,17 @@
     <span class="md-ellipsis">
       
         Check it works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
       
     </span>
   </a>
@@ -542,26 +701,25 @@
 
 
 <h1 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h1>
-<p>Every client starts the server with <a href="https://docs.astral.sh/uv/"><code>uv</code></a>, so <code>uv</code> must be on your
-PATH. The server works on the folder it is started in: start your client from the project that holds
-your contracts, or pass <code>--root</code>.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Claude Code</label><label for="__tabbed_1_2">Cursor</label><label for="__tabbed_1_3">Claude Desktop, VS Code and others</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
+<p>You need:</p>
+<ul>
+<li><strong><a href="https://docs.astral.sh/uv/"><code>uv</code></a></strong> on your PATH. Every client starts the server with <code>uvx</code>,
+  which downloads and runs it — no separate install.</li>
+<li><strong>Python 3.10 or later</strong> (uv can provide it).</li>
+</ul>
+<p>The server works on <strong>one project folder</strong>: where your contracts are. Terminal clients start it in the
+folder you run them from; desktop apps do not, so give them <code>--root</code>.</p>
+<h2 id="claude-code">Claude Code<a class="headerlink" href="#claude-code" title="Permanent link">&para;</a></h2>
 <p>As a plugin:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/plugin marketplace add LakeLogic/lakelogic-mcp
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>/plugin install lakelogic-mcp@lakelogic-mcp
 </code></pre></div>
-<p>Or directly:</p>
+<p>Or directly, from your project folder:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>claude<span class="w"> </span>mcp<span class="w"> </span>add<span class="w"> </span>lakelogic<span class="w"> </span>--<span class="w"> </span>uvx<span class="w"> </span>lakelogic-mcp
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<p><a href="cursor://anysphere.cursor-deeplink/mcp/install?name=lakelogic&amp;config=eyJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyJsYWtlbG9naWMtbWNwIl19">Add to Cursor</a></p>
-<p>Or add it to Cursor's <code>mcp.json</code> as below.</p>
-</div>
-<div class="tabbed-block">
-<p>Add to the client's MCP settings (<code>claude_desktop_config.json</code>, <code>mcp.json</code>, …):</p>
+<h2 id="claude-desktop">Claude Desktop<a class="headerlink" href="#claude-desktop" title="Permanent link">&para;</a></h2>
+<p>Edit <code>claude_desktop_config.json</code> (Settings → Developer → Edit Config). It lives in
+<code>%APPDATA%\Claude\</code> on Windows and <code>~/Library/Application Support/Claude/</code> on macOS.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">"lakelogic"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -571,10 +729,36 @@ your contracts, or pass <code>--root</code>.</p>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
 </code></pre></div>
-</div>
-</div>
-</div>
-<p>It is also listed in the official <a href="https://registry.modelcontextprotocol.io">MCP Registry</a> as
+<p>Restart Claude Desktop after saving.</p>
+<h2 id="cursor">Cursor<a class="headerlink" href="#cursor" title="Permanent link">&para;</a></h2>
+<p><a href="cursor://anysphere.cursor-deeplink/mcp/install?name=lakelogic&amp;config=eyJjb21tYW5kIjoidXZ4IiwiYXJncyI6WyJsYWtlbG9naWMtbWNwIl19">Add to Cursor</a>,
+or edit <code>.cursor/mcp.json</code> in your project (or <code>~/.cursor/mcp.json</code> for every project):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">"mcpServers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">"lakelogic"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">      </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uvx"</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">      </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"lakelogic-mcp"</span><span class="p">]</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="vs-code">VS Code<a class="headerlink" href="#vs-code" title="Permanent link">&para;</a></h2>
+<p>Edit <code>.vscode/mcp.json</code> in your project. VS Code's format differs: the top key is <code>servers</code> and each
+server names its <code>type</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">"servers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">"lakelogic"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stdio"</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">      </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uvx"</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">      </span><span class="nt">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"lakelogic-mcp"</span><span class="p">]</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="other-mcp-clients">Other MCP clients<a class="headerlink" href="#other-mcp-clients" title="Permanent link">&para;</a></h2>
+<p>Run <code>uvx lakelogic-mcp</code> as a <strong>stdio</strong> server, with <code>--root &lt;folder&gt;</code> if the client does not start it
+in your project. Check your client's documentation for where its MCP settings go.</p>
+<p>The server is also listed in the official <a href="https://registry.modelcontextprotocol.io">MCP Registry</a> as
 <code>io.github.LakeLogic/lakelogic-mcp</code>.</p>
 <h2 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h2>
 <table>
@@ -587,7 +771,7 @@ your contracts, or pass <code>--root</code>.</p>
 <tbody>
 <tr>
 <td><code>--root &lt;folder&gt;</code></td>
-<td>The project folder the tools may read and write. Default: the folder the server starts in.</td>
+<td>The project folder the tools work in. Default: the folder the server starts in.</td>
 </tr>
 <tr>
 <td><code>LAKELOGIC_MCP_ROOT</code></td>
@@ -596,8 +780,35 @@ your contracts, or pass <code>--root</code>.</p>
 </tbody>
 </table>
 <h2 id="check-it-works">Check it works<a class="headerlink" href="#check-it-works" title="Permanent link">&para;</a></h2>
-<p>Ask your assistant: <em>"List the LakeLogic tools you have."</em> It should name the seven tools on the
-<a href="tools.html">Tools</a> page. Then: <em>"Validate the contracts in this folder."</em></p>
+<p>Ask your assistant <em>"List the LakeLogic tools you have."</em> It should name the seven tools on the
+<a href="tools.html">Tools</a> page. Then try the <a href="walkthrough.html">Walkthrough</a>.</p>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely cause and fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The client says it cannot start the server, or <code>uvx</code> is not found</td>
+<td><code>uv</code> is not installed or not on the PATH the client sees. Install uv, then restart the client. On Windows a desktop app may need a sign-out to pick up a new PATH; or give the full path to <code>uvx</code> as the <code>command</code>.</td>
+</tr>
+<tr>
+<td>A tool says a file is outside the project, or cannot find your contract</td>
+<td>The server is working in a different folder. Set <code>--root</code> to the folder that holds your contracts (paths are relative to it).</td>
+</tr>
+<tr>
+<td>The assistant does not list the LakeLogic tools</td>
+<td>The server did not start, or the client was not restarted after the settings change. Restart the client and check its MCP log; in Claude Code, run <code>claude mcp list</code>.</td>
+</tr>
+<tr>
+<td>The first start is slow</td>
+<td><code>uvx</code> downloads the package and its dependencies the first time. Later starts use the cache.</td>
+</tr>
+</tbody>
+</table>
 
 
 

@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://lakelogic.github.io/lakelogic-mcp/tools.html">
       
       
-        <link rel="prev" href="install.html">
+        <link rel="prev" href="walkthrough.html">
       
       
         <link rel="next" href="safety.html">
@@ -311,6 +311,33 @@
     
   
     Install
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="walkthrough.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Walkthrough
   
 
     
@@ -655,8 +682,10 @@
 <p>Seven tools. Five only <strong>read</strong> a contract and report; two <strong>act locally</strong> — one writes a test-data
 file, one runs a contract on a local file. Clients may call the read-only tools without asking each
 time (they are marked read-only to the client); the other two ask first in most clients.</p>
-<p>Paths are files inside the project the server was started in. Every tool returns a JSON object; a
-problem comes back as <code>{"error": "..."}</code>, never a crash.</p>
+<p>Paths are files inside the project the server was started in. Every tool returns a JSON object.
+An expected problem — a missing file, a path outside the project, a bad argument — comes back as
+<code>{"error": "..."}</code>; a contract run that fails comes back as <code>{"ran": false, "error": "..."}</code>. Anything
+unexpected is reported by your MCP client as a tool error.</p>
 <p>The server also tells the assistant how to use them together: after writing or changing a contract,
 <strong>validate</strong>, then <strong>lint</strong>, and fix what they report before showing it.</p>
 <hr />
@@ -777,7 +806,7 @@ of rows that deliberately break its quality rules, so a run shows quarantine wor
 <tr>
 <td><code>invalid_ratio</code></td>
 <td><code>0.1</code></td>
-<td>Share of rows that break a rule</td>
+<td>Share of rows to make break a rule (requested; the response reports <code>intended_invalid_rows</code>, and <code>run_contract</code> shows how many actually fail)</td>
 </tr>
 <tr>
 <td><code>seed</code></td>
@@ -822,7 +851,7 @@ how many rows pass, how many are quarantined, and each quarantine reason with it
 <tr>
 <td><code>sample</code></td>
 <td><code>10</code></td>
-<td>How many example rows of each kind to return</td>
+<td>Maximum number of <strong>quarantined</strong> rows to return (accepted rows are never returned)</td>
 </tr>
 <tr>
 <td><code>write_outputs</code></td>
@@ -831,7 +860,8 @@ how many rows pass, how many are quarantined, and each quarantine reason with it
 </tr>
 </tbody>
 </table>
-<p>A typical sequence: <code>generate_test_data</code> → <code>run_contract</code> on the file it wrote.</p>
+<p>A typical sequence: <code>generate_test_data</code> → <code>run_contract</code> on the file it wrote. See the
+<a href="walkthrough.html">Walkthrough</a> for real output and how to read it.</p>
 
 
 

@@ -330,6 +330,33 @@
   
   
     <li class="md-nav__item">
+      <a href="walkthrough.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="tools.html" class="md-nav__link">
         
   
@@ -439,10 +466,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-the-two-local-tools-write" class="md-nav__link">
+  <a href="#files-the-tools-write" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What the two local tools write
+        Files the tools write
       
     </span>
   </a>
@@ -544,10 +571,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-the-two-local-tools-write" class="md-nav__link">
+  <a href="#files-the-tools-write" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What the two local tools write
+        Files the tools write
       
     </span>
   </a>
@@ -608,7 +635,8 @@ does what the contract configures. Two things follow:</p>
   <code>links:</code>, for example — are read by Core and are not limited to the project folder.</li>
 </ul>
 <p>Nothing is written to the contract's target table either way.</p>
-<h2 id="what-the-two-local-tools-write">What the two local tools write<a class="headerlink" href="#what-the-two-local-tools-write" title="Permanent link">&para;</a></h2>
+<h2 id="files-the-tools-write">Files the tools write<a class="headerlink" href="#files-the-tools-write" title="Permanent link">&para;</a></h2>
+<p>These are the files the tools themselves save, all inside the project:</p>
 <table>
 <thead>
 <tr>
@@ -621,22 +649,30 @@ does what the contract configures. Two things follow:</p>
 <tr>
 <td><code>generate_test_data</code></td>
 <td>A synthetic data file</td>
-<td><code>test_data/</code> (or the <code>output</code> you give), inside the project</td>
+<td><code>test_data/</code> (or the <code>output</code> you give)</td>
 </tr>
 <tr>
 <td><code>run_contract</code></td>
-<td>Nothing, unless <code>write_outputs</code> is set; then the good and quarantined rows</td>
-<td><code>runs/</code>, inside the project</td>
+<td>No file of its own, unless <code>write_outputs</code> is set; then the good and quarantined rows</td>
+<td><code>runs/</code></td>
 </tr>
 </tbody>
 </table>
-<p>Both are marked to the client as <strong>not read-only</strong>, so most clients ask before running them. The five
-other tools are marked <strong>read-only</strong>.</p>
+<p>This is separate from what Core does <strong>because the contract asks for it</strong> during <code>run_contract</code>
+(notifications, run-log delivery — see <a href="#when-a-contract-runs">When a contract runs</a>). <code>write_outputs</code>
+does not turn those on or off; a contract's own settings do.</p>
+<p>Both tools are marked to the client as <strong>not read-only</strong>, so most clients ask before running them. The
+five other tools are marked <strong>read-only</strong>.</p>
 <h2 id="what-reaches-your-ai-provider">What reaches your AI provider<a class="headerlink" href="#what-reaches-your-ai-provider" title="Permanent link">&para;</a></h2>
 <p>Running locally does not keep results away from the assistant. Every tool result goes into the
-assistant's context, and so to whichever model provider your client uses. <code>run_contract</code> returns
-counts, failure reasons <strong>and a sample of rows</strong> (<code>sample</code>, default 10). If a data file holds real
-personal data, test with generated data instead, or set <code>sample</code> to <code>0</code>.</p>
+assistant's context, and so to whichever model provider your client uses. That includes:</p>
+<ul>
+<li><code>run_contract</code>'s <strong>sample of quarantined rows</strong> (<code>sample</code>, default 10);</li>
+<li><strong>failure reasons and error messages</strong>, which can quote values from your data;</li>
+<li><strong>the contract itself</strong> whenever a tool reads or reports on it — field names, descriptions, rules.</li>
+</ul>
+<p>Setting <code>sample</code> to <code>0</code> removes the row sample only; the rest is still returned. If a data file holds
+real personal or confidential data, test with <a href="tools.html#generate_test_data">generated data</a> instead.</p>
 
 
 
