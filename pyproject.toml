@@ -1,6 +1,6 @@
 [project]
 name = "lakelogic-mcp"
-version = "0.1.2"
+version = "0.1.3"
 description = "A local MCP server that lets AI assistants validate, lint and explain Open Lakehouse Contracts."
 readme = "README.md"
 requires-python = ">=3.10"
