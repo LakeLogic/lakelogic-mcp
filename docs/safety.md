@@ -25,19 +25,30 @@ does what the contract configures. Two things follow:
 
 Nothing is written to the contract's target table either way.
 
-## What the two local tools write
+## Files the tools write
+
+These are the files the tools themselves save, all inside the project:
 
 | Tool | Writes | Where |
 |---|---|---|
-| `generate_test_data` | A synthetic data file | `test_data/` (or the `output` you give), inside the project |
-| `run_contract` | Nothing, unless `write_outputs` is set; then the good and quarantined rows | `runs/`, inside the project |
+| `generate_test_data` | A synthetic data file | `test_data/` (or the `output` you give) |
+| `run_contract` | No file of its own, unless `write_outputs` is set; then the good and quarantined rows | `runs/` |
 
-Both are marked to the client as **not read-only**, so most clients ask before running them. The five
-other tools are marked **read-only**.
+This is separate from what Core does **because the contract asks for it** during `run_contract`
+(notifications, run-log delivery — see [When a contract runs](#when-a-contract-runs)). `write_outputs`
+does not turn those on or off; a contract's own settings do.
+
+Both tools are marked to the client as **not read-only**, so most clients ask before running them. The
+five other tools are marked **read-only**.
 
 ## What reaches your AI provider
 
 Running locally does not keep results away from the assistant. Every tool result goes into the
-assistant's context, and so to whichever model provider your client uses. `run_contract` returns
-counts, failure reasons **and a sample of rows** (`sample`, default 10). If a data file holds real
-personal data, test with generated data instead, or set `sample` to `0`.
+assistant's context, and so to whichever model provider your client uses. That includes:
+
+- `run_contract`'s **sample of quarantined rows** (`sample`, default 10);
+- **failure reasons and error messages**, which can quote values from your data;
+- **the contract itself** whenever a tool reads or reports on it — field names, descriptions, rules.
+
+Setting `sample` to `0` removes the row sample only; the rest is still returned. If a data file holds
+real personal or confidential data, test with [generated data](tools.md#generate_test_data) instead.

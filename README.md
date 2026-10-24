@@ -42,7 +42,8 @@ LakeLogic, not plausible-looking YAML.
 | `generate_test_data` | Synthetic data shaped by the contract, with a share of rows that deliberately break its rules |
 | `run_contract` | How many rows pass, how many fail, and why (Polars or DuckDB, on a local file) |
 
-Details and inputs: [Tools](https://lakelogic.github.io/lakelogic-mcp/tools.html).
+Details and inputs: [Tools](https://lakelogic.github.io/lakelogic-mcp/tools.html). A first run, start to finish:
+[Walkthrough](https://lakelogic.github.io/lakelogic-mcp/walkthrough.html).
 
 ## Install
 
@@ -86,8 +87,9 @@ It is listed in the official [MCP Registry](https://registry.modelcontextprotoco
 - **Running a contract does what the contract configures.** If a contract declares notifications or
   run-log delivery, LakeLogic Core may send them during `run_contract`. Nothing is written to the
   contract's target.
-- **Results reach your AI provider.** Tool results, including `run_contract`'s sample rows, go into the
-  assistant's context. Test with generated data, or set `sample` to `0`, if a file holds personal data.
+- **Results reach your AI provider.** Tool results go into the assistant's context: quarantined sample
+  rows, failure reasons (which can quote your data) and the contract itself. `sample: 0` removes only
+  the rows, so test with generated data if a file holds personal or confidential data.
 
 More: [Safety and privacy](https://lakelogic.github.io/lakelogic-mcp/safety.html).
 

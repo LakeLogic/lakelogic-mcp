@@ -4,8 +4,10 @@ Seven tools. Five only **read** a contract and report; two **act locally** — o
 file, one runs a contract on a local file. Clients may call the read-only tools without asking each
 time (they are marked read-only to the client); the other two ask first in most clients.
 
-Paths are files inside the project the server was started in. Every tool returns a JSON object; a
-problem comes back as `{"error": "..."}`, never a crash.
+Paths are files inside the project the server was started in. Every tool returns a JSON object.
+An expected problem — a missing file, a path outside the project, a bad argument — comes back as
+`{"error": "..."}`; a contract run that fails comes back as `{"ran": false, "error": "..."}`. Anything
+unexpected is reported by your MCP client as a tool error.
 
 The server also tells the assistant how to use them together: after writing or changing a contract,
 **validate**, then **lint**, and fix what they report before showing it.
@@ -69,7 +71,7 @@ of rows that deliberately break its quality rules, so a run shows quarantine wor
 |---|---|---|
 | `path` | | The contract file |
 | `rows` | `100` | How many rows |
-| `invalid_ratio` | `0.1` | Share of rows that break a rule |
+| `invalid_ratio` | `0.1` | Share of rows to make break a rule (requested; the response reports `intended_invalid_rows`, and `run_contract` shows how many actually fail) |
 | `seed` | random | For repeatable data |
 | `output` | `test_data/<contract>.csv` | Where to write it |
 
@@ -84,7 +86,8 @@ how many rows pass, how many are quarantined, and each quarantine reason with it
 | `path` | | The contract file |
 | `source` | | The data file (CSV or Parquet) in the project |
 | `engine` | `polars` | `polars` or `duckdb` |
-| `sample` | `10` | How many example rows of each kind to return |
+| `sample` | `10` | Maximum number of **quarantined** rows to return (accepted rows are never returned) |
 | `write_outputs` | `false` | Save the good and quarantined rows under `runs/` |
 
-A typical sequence: `generate_test_data` → `run_contract` on the file it wrote.
+A typical sequence: `generate_test_data` → `run_contract` on the file it wrote. See the
+[Walkthrough](walkthrough.md) for real output and how to read it.

@@ -52,6 +52,7 @@ theme:
 nav:
   - Overview: index.md
   - Install: install.md
+  - Walkthrough: walkthrough.md
   - Tools: tools.md
   - Safety and privacy: safety.md
   - Development: development.md

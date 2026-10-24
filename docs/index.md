@@ -40,5 +40,5 @@ LakeLogic, not plausible-looking YAML.
 claude mcp add lakelogic -- uvx lakelogic-mcp
 ```
 
-Start your assistant in the project that holds your contracts. Other clients: see [Install](install.md).
+Start your assistant in the project that holds your contracts, then try the [Walkthrough](walkthrough.md). Other clients: see [Install](install.md).
 Before running contracts on real data, read [Safety and privacy](safety.md).
