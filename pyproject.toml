@@ -6,7 +6,20 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
 authors = [{ name = "LakeLogic Team", email = "lakelogic@gmail.com" }]
-keywords = ["mcp", "model-context-protocol", "data-contracts", "olc", "open-lakehouse-contract", "lakehouse", "data-quality", "claude", "cursor", "ai-assistant"]
+keywords = [
+    "mcp",
+    "model-context-protocol",
+    "data-contracts",
+    "data-contract-validation",
+    "schema-validation",
+    "data-quality",
+    "lakehouse",
+    "yaml",
+    "ai-assistant",
+    "synthetic-data",
+    "claude",
+    "cursor",
+]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
@@ -27,7 +40,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://lakelogic.io"
-Documentation = "https://lakelogic.github.io/LakeLogic/"
+Documentation = "https://lakelogic.github.io/lakelogic-mcp/"
 Repository = "https://github.com/LakeLogic/lakelogic-mcp"
 Issues = "https://github.com/LakeLogic/lakelogic-mcp/issues"
 "Open Lakehouse Contract" = "https://lakelogic.github.io/open-lakehouse-contract/"
@@ -47,3 +60,19 @@ packages = ["src/lakelogic_mcp"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+# Releases: release.bat (commitizen bumps, git-cliff writes CHANGELOG.md). The version lives in
+# five places; commitizen updates all of them together so they can never disagree again
+# (until 2026-10-24 __init__.py said 0.1.0 while the package was 0.1.2).
+[tool.commitizen]
+name = "cz_conventional_commits"
+version_provider = "pep621"
+version_scheme = "semver"
+tag_format = "v$version"
+update_changelog_on_bump = false
+major_version_zero = true
+version_files = [
+    "src/lakelogic_mcp/__init__.py:__version__",
+    "server.json:\"version\"",
+    "plugins/lakelogic-mcp/.claude-plugin/plugin.json:\"version\"",
+]
