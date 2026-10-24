@@ -19,4 +19,4 @@ Install:
 /plugin install lakelogic-mcp@lakelogic-mcp
 ```
 
-Docs: https://lakelogic.github.io/LakeLogic/ai_assistants_mcp/
+Docs: https://docs.lakelogic.io/ai_assistants_mcp/

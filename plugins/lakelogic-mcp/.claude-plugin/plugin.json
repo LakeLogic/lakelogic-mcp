@@ -3,7 +3,7 @@
   "version": "0.1.3",
   "description": "Validate, lint, explain, generate test data for and run Open Lakehouse Contracts locally",
   "author": { "name": "LakeLogic" },
-  "homepage": "https://lakelogic.github.io/LakeLogic/ai_assistants_mcp/",
+  "homepage": "https://docs.lakelogic.io/ai_assistants_mcp/",
   "repository": "https://github.com/LakeLogic/lakelogic-mcp",
   "license": "Apache-2.0"
 }

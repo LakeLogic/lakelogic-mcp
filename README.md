@@ -10,9 +10,9 @@ mcp-name: io.github.LakeLogic/lakelogic-mcp
 
 **Help AI assistants check and test data contracts locally.**
 
-Validate [Open Lakehouse Contracts (OLC)](https://lakelogic.github.io/open-lakehouse-contract/), find
+Validate [Open Lakehouse Contracts (OLC)](https://olc.lakelogic.io/), find
 governance gaps, explain rules and generate sample data. Test-run contracts with
-[LakeLogic Core](https://lakelogic.github.io/LakeLogic/) using Polars or DuckDB, then inspect accepted
+[LakeLogic Core](https://docs.lakelogic.io/) using Polars or DuckDB, then inspect accepted
 rows, failed rows and the reasons they failed.
 
 Works with MCP-compatible assistants — Claude Code, Claude Desktop, Cursor and others. No LakeLogic
@@ -20,7 +20,7 @@ account required.
 
 **OLC defines the contract. Core executes it. MCP gives your assistant access to those tools.**
 
-📖 **Documentation:** <https://lakelogic.github.io/lakelogic-mcp/>
+📖 **Documentation:** <https://mcp.lakelogic.io/>
 
 ## Example
 
@@ -42,8 +42,8 @@ LakeLogic, not plausible-looking YAML.
 | `generate_test_data` | Synthetic data shaped by the contract, with a share of rows that deliberately break its rules |
 | `run_contract` | How many rows pass, how many fail, and why (Polars or DuckDB, on a local file) |
 
-Details and inputs: [Tools](https://lakelogic.github.io/lakelogic-mcp/tools.html). A first run, start to finish:
-[Walkthrough](https://lakelogic.github.io/lakelogic-mcp/walkthrough.html).
+Details and inputs: [Tools](https://mcp.lakelogic.io/tools.html). A first run, start to finish:
+[Walkthrough](https://mcp.lakelogic.io/walkthrough.html).
 
 ## Install
 
@@ -91,9 +91,9 @@ It is listed in the official [MCP Registry](https://registry.modelcontextprotoco
   rows, failure reasons (which can quote your data) and the contract itself. `sample: 0` removes only
   the rows, so test with generated data if a file holds personal or confidential data.
 
-More: [Safety and privacy](https://lakelogic.github.io/lakelogic-mcp/safety.html).
+More: [Safety and privacy](https://mcp.lakelogic.io/safety.html).
 
 ## Contributing
 
 To work on the server from a checkout, see
-[Development](https://lakelogic.github.io/lakelogic-mcp/development.html).
+[Development](https://mcp.lakelogic.io/development.html).

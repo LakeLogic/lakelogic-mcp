@@ -1,7 +1,7 @@
 name: Deploy Documentation
 
 # Same as the OLC docs deploy: on every push to main, build the mkdocs site and publish it to the
-# gh-pages branch, which GitHub Pages serves at https://lakelogic.github.io/lakelogic-mcp/.
+# gh-pages branch, which GitHub Pages serves at https://mcp.lakelogic.io/.
 
 on:
     push:

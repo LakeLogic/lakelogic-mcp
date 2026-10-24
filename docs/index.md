@@ -4,9 +4,9 @@
 
 **Help AI assistants check and test data contracts locally.**
 
-Validate [Open Lakehouse Contracts (OLC)](https://lakelogic.github.io/open-lakehouse-contract/), find
+Validate [Open Lakehouse Contracts (OLC)](https://olc.lakelogic.io/), find
 governance gaps, explain rules and generate sample data. Test-run contracts with
-[LakeLogic Core](https://lakelogic.github.io/LakeLogic/) using Polars or DuckDB, then inspect accepted
+[LakeLogic Core](https://docs.lakelogic.io/) using Polars or DuckDB, then inspect accepted
 rows, failed rows and the reasons they failed.
 
 Works with MCP-compatible assistants — Claude Code, Claude Desktop, Cursor and others. No LakeLogic

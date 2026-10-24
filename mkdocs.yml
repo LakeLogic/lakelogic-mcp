@@ -2,15 +2,15 @@ site_name: LakeLogic MCP
 site_description: >
   A local MCP server that lets AI assistants check, test and run the Open Lakehouse Contracts
   they write, using LakeLogic itself instead of guessing.
-site_url: https://lakelogic.github.io/lakelogic-mcp/
+site_url: https://mcp.lakelogic.io/
 site_author: LakeLogic
 repo_name: LakeLogic/lakelogic-mcp
 repo_url: https://github.com/LakeLogic/lakelogic-mcp
 edit_uri: edit/main/docs/
 copyright: >
   Copyright &copy; 2026 LakeLogic ·
-  <a href="https://lakelogic.github.io/LakeLogic/" target="_blank">LakeLogic Core</a> ·
-  <a href="https://lakelogic.github.io/open-lakehouse-contract/" target="_blank">Open Lakehouse Contract</a>
+  <a href="https://docs.lakelogic.io/" target="_blank">LakeLogic Core</a> ·
+  <a href="https://olc.lakelogic.io/" target="_blank">Open Lakehouse Contract</a>
 
 use_directory_urls: false
 dev_addr: 127.0.0.1:8012

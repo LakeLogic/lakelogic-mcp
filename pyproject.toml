@@ -40,10 +40,10 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://lakelogic.io"
-Documentation = "https://lakelogic.github.io/lakelogic-mcp/"
+Documentation = "https://mcp.lakelogic.io/"
 Repository = "https://github.com/LakeLogic/lakelogic-mcp"
 Issues = "https://github.com/LakeLogic/lakelogic-mcp/issues"
-"Open Lakehouse Contract" = "https://lakelogic.github.io/open-lakehouse-contract/"
+"Open Lakehouse Contract" = "https://olc.lakelogic.io/"
 
 [project.scripts]
 lakelogic-mcp = "lakelogic_mcp.server:main"

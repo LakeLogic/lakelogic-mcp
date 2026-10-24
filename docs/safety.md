@@ -14,7 +14,7 @@ An assistant with tools can do things. This page says what these tools do, and w
 
 ## When a contract runs
 
-`run_contract` hands the contract to [LakeLogic Core](https://lakelogic.github.io/LakeLogic/), which
+`run_contract` hands the contract to [LakeLogic Core](https://docs.lakelogic.io/), which
 does what the contract configures. Two things follow:
 
 - **A contract can configure network calls.** If it declares notifications (for example a Slack
