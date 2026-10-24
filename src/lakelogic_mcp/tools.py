@@ -124,17 +124,52 @@ def validate_contract(path: Optional[str] = None, contract_yaml: Optional[str] =
     return {"contract": source, "valid": True, "errors": []}
 
 
+def _project_context(contract: Path):
+    """Core's `load_context` (nearest `_system.yaml`, then `_domain.yaml`, merged domain <- system),
+    walking up from the contract's folder but never above ROOT (2026-10-24: Core's own walk goes up
+    to eight folders, so lint read `_domain.yaml` from outside the project). Core's own loader and
+    merge, so the policy is the one `lakelogic lint` would build from the same files."""
+    from lakelogic.core.contract_lint import GovernanceContext, _deep_merge, _load_yaml
+
+    domain_cfg: Dict[str, Any] = {}
+    system_cfg: Dict[str, Any] = {}
+    folder = contract.resolve().parent
+    while True:
+        if not system_cfg and (folder / "_system.yaml").is_file():
+            system_cfg = _load_yaml(folder / "_system.yaml")
+        if (folder / "_domain.yaml").is_file():
+            domain_cfg = _load_yaml(folder / "_domain.yaml")
+            break
+        if folder == ROOT or folder.parent == folder or ROOT not in folder.parents:
+            break
+        folder = folder.parent
+    if not domain_cfg and not system_cfg:
+        return None
+    return GovernanceContext(policy=_deep_merge(domain_cfg, system_cfg))
+
+
 def lint_contract(path: Optional[str] = None, contract_yaml: Optional[str] = None) -> Dict[str, Any]:
     """Is this a GOOD contract? Governance findings from `lakelogic lint`, each with its fix.
 
     With `path`, the contract's domain and system settings (`_domain.yaml` / `_system.yaml`
-    above it) are taken into account, exactly as `lakelogic lint` does.
+    above it) are taken into account as `lakelogic lint` does — but only those inside the project:
+    the search stops at ROOT, so lint never reads a file outside the project it was opened on.
     """
-    from lakelogic.core.contract_lint import review_contract, review_contract_dict
+    from lakelogic.core.contract_lint import _c, review_contract_dict
+    from lakelogic.core.contract_yaml import load_contract_yaml
 
     if path:
         full = _resolve(path)
-        findings = review_contract(full)
+        # Not `review_contract(full)`: with no context it walks up past ROOT itself. Same steps,
+        # with the project-bounded context — None here means standalone, as in Core.
+        try:
+            raw = load_contract_yaml(full.read_text(encoding="utf-8"))
+        except Exception as exc:  # noqa: BLE001 - reported as Core reports it
+            raw, findings = None, [_c(full.stem, "PARSE-000", "critical", "parse", f"could not read YAML: {exc}")]
+        if raw is not None and not isinstance(raw, dict):
+            findings = [_c(full.stem, "PARSE-000", "critical", "parse", "top-level YAML is not a mapping.")]
+        elif isinstance(raw, dict):
+            findings = review_contract_dict(raw, full.stem, _project_context(full))
         source = str(full.relative_to(ROOT))
     else:
         text, source = _contract_text(None, contract_yaml)
